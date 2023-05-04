@@ -1,13 +1,11 @@
 ---
-import Head from "../components/MetaHead.astro"
-import Header from "../components/Header.astro"
+import Layout from "../layouts/BaseLayout.astro"
+
+const pageTitle = "Blog"
 ---
 
-<html lang="en">
-	<Head/>
-	<body>
-        <Header/>
-
+<Layout title={pageTitle}>
+	<main>
 		<h1>Meu site de blog com o Astro</h1>
         <h2>... e meu novo site em Astro!</h2>
 
@@ -20,8 +18,5 @@ import Header from "../components/Header.astro"
             <li><a href="/posts/post-2">Post 2</a></li>
             <li><a href="/posts/post-3">Post 3</a></li>
         </ul>
-        <script>
-			import "../scripts/menu"
-		</script>
-	</body>
-</html>
+	</main>
+</Layout>

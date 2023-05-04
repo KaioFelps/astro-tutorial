@@ -1,6 +1,5 @@
 ---
-import Header from "../components/Header.astro"
-import Head from "../components/MetaHead.astro"
+import Layout from "../layouts/BaseLayout.astro"
 const pageTitle = "Sobre mim"
 
 const identity = {
@@ -13,11 +12,8 @@ const identity = {
 const skills = ["HTML", "CSS", "JavaScript", "React", "Astro" ]
 ---
 
-<html lang="en">
-	<Head title={pageTitle} />
-	<body>
-        <Header/>
-
+<Layout title={pageTitle}>
+	<main>
 		<h1>{pageTitle}</h1>
         <h2>... e meu novo site em Astro!</h2>
         <p>
@@ -44,5 +40,5 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro" ]
         <script>
 			import "../scripts/menu"
 		</script>
-	</body>
-</html>
+	</main>
+</Layout>
