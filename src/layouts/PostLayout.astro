@@ -1,0 +1,114 @@
+---
+import "../styles/global.css"
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import MetaHead from "../components/MetaHead.astro";
+
+const { frontmatter } = Astro.props
+const pageTitle = frontmatter.title
+---
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<MetaHead title={pageTitle} />
+<body>
+    <style>
+        main {
+            width: calc(100% - 24px);
+            max-width: 720px;
+            margin: 48px auto;
+        }
+    
+        article {
+            background: white;
+            border-radius: 12px;
+        }
+        
+        header {
+            padding: 16px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        h1 {
+            margin: 0;
+            padding: 0;
+            line-height: auto;
+        }
+    
+        header p {
+            margin: 0;
+        }
+    
+        .content {
+            padding-inline: 24px;
+            padding-bottom: 24px
+        }
+        
+        .go-back-btn {
+            border: none;
+            box-shadow: inset 0px 0px 0px 1px #00000020;
+            background-color: white;
+            padding: 12px 32px;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            transition: all 75ms ease-in;
+        }
+        .go-back-btn:hover {
+            filter: brightness(0.98);
+        }
+        .go-back-btn:active {
+            filter: brightness(0.9);
+            transform: scale(0.95);
+        }
+
+        .tag {
+            font-size: .875rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            line-height: 1.25;
+            border-radius: 999px;
+            background: #eee;
+        }
+
+        .tag-container {
+            border-bottom: 1px solid #eeeeee;
+            border-top: 1px solid #eeeeee;
+            margin: 0px 0 32px 0;
+            padding: 8px 24px;
+            display: flex;
+            gap: 4px;
+        }
+    </style>
+    
+    <Header />
+    <main>
+        <button class="go-back-btn">Go back</button>
+        <article>
+            <header>
+                <h1>{frontmatter.title}</h1>
+                <p>Written by {frontmatter.author} • {new Date(frontmatter.pubDate).toDateString()}</p>
+            </header>
+
+            <div class="tag-container">
+                {frontmatter.tags.map(tag => {
+                    return (
+                        <span class="tag">{tag}</span>
+                    )
+                })}
+            </div>
+
+            <div class="content">
+                <slot/>
+            </div>
+        </article>
+    </main>
+    <Footer />
+    <script>
+        document.querySelector(".go-back-btn").addEventListener("click", () => history.back())
+    </script>
+</body>
+</html>
