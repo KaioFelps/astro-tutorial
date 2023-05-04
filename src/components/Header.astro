@@ -1,0 +1,67 @@
+---
+import Hamburguer from "./Hamburguer.astro"
+---
+<style>
+    header {
+        padding: 24px;
+        background: #fafafa;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .link {
+        display: block;
+        padding: 16px 24px;
+        border-radius: 8px;
+        background: transparent;
+        color: #00b7ff;
+        text-decoration: none;
+        font-weight: bold;
+
+        transition: all 150ms ease-in;
+    }
+    .link:hover {
+        background: #00000010;
+    }
+    .link:active {
+        transform: scale(0.9);
+    }
+
+    .nav-links {
+        width: 100%;
+        display: none;
+        margin-bottom: 16px;
+    }
+
+    .expanded {
+        display: flex;
+    }
+
+    @media screen and (min-width: 636px) {
+        .nav-links {
+            margin-left: 5em;
+            display: flex;
+            position: static;
+            width: auto;
+            background: none;
+            margin-bottom: 0;
+        }
+
+        .nav-links a {
+            display: inline-block;
+        }
+    }
+</style>
+
+<header>
+    <nav class="nav-links">
+        <a class="link" href="/">Home</a>
+        <a class="link" href="/about">Sobre</a>
+        <a class="link" href="/blog">Blog</a>
+    </nav>
+    <Hamburguer />
+</header>

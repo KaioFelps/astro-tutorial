@@ -1,30 +1,48 @@
 ---
+import Header from "../components/Header.astro"
+import Head from "../components/MetaHead.astro"
+const pageTitle = "Sobre mim"
+
+const identity = {
+    firstName: "Kaio",
+    country: "Brasil",
+    occupation: "Student",
+    hobbies: ["programar", "escrever", "fazer pixel-art"]
+}
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro" ]
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro - About</title>
-	</head>
+	<Head title={pageTitle} />
 	<body>
-        <header>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/about">Sobre</a>
-                <a href="/blog">Blog</a>
-            </nav>
-        </header>
+        <Header/>
 
-		<h1>Sobre mim</h1>
+		<h1>{pageTitle}</h1>
         <h2>... e meu novo site em Astro!</h2>
-
         <p>
             Estou programando lado a lado com o tutorial de introdução do Astro. Esta é a segunda página do meu website e é a primeira que eu faço sozinho!
         </p>
 
         <p>Esse site vai ser atualizado conforme eu vou completando o tutorial, então fique de olho para ver como minha jornada está indo!</p>
+
+        <p><strong>Alguns fatos sobre mim:</strong></p>
+        <ul>
+            <li>Meu nome é {identity.firstName}</li>
+            <li>Eu moro no e sou um {identity.occupation}</li>
+            <li>Dois dos meus hobbies são {identity.hobbies[0]} e {identity.hobbies[1]}</li>
+        </ul>
+
+        <p><strong>Minhas habilidades são:</strong></p>
+        <ul>
+            {skills.map((skill) => {
+                return (
+                    <li>{skill}</li>
+                )
+            })}
+        </ul>
+        <script>
+			import "../scripts/menu"
+		</script>
 	</body>
 </html>
