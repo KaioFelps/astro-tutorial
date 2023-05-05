@@ -78,6 +78,8 @@ const pageTitle = frontmatter.title
             line-height: 1.25;
             border-radius: 999px;
             background: #ff9e7450;
+            color: rgb(85, 78, 232);
+            text-decoration: none;
         }
 
         .tag-container {
@@ -101,7 +103,7 @@ const pageTitle = frontmatter.title
             <div class="tag-container">
                 {frontmatter.tags.map(tag => {
                     return (
-                        <span class="tag">{tag}</span>
+                        <a class="tag" href={`/tags/${tag}`}>{tag}</a>
                     )
                 })}
             </div>

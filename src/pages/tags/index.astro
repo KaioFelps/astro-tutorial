@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+
+const allPosts = await Astro.glob("../posts/*.md")
+const existingTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())]
+---
+<style>
+    main {
+        width: calc(100% - 24px);
+        max-width: 720px;
+        margin: 48px auto;
+    }
+
+    .more-tags-container {
+        background: black;
+        border-radius: 4px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        
+        padding: 24px;
+        margin-top: 36px;
+    }
+
+    .more-tags-container p {
+        color: #555;
+        font-weight: 900;
+    }
+
+    .more-tags-container .content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .more-tags-container .content a {
+        color: white;
+        font-weight: 700;
+        font-size: 1.25rem;
+        text-decoration: none;
+        position: relative;
+        z-index: 99;
+    }
+
+    .more-tags-container .content a::before {
+        content: "";
+        height: 2px;
+        position: absolute;
+        bottom: 1px;
+        left: 0px;
+        width: 100%;
+        background: rgba(255, 176, 250, 0.342);
+        transition: all 75ms ease;
+    }
+    
+    .more-tags-container .content a:hover::before {
+        height: 2.25ch;
+        z-index: 0;
+    }
+</style>
+
+<BaseLayout title={`Filtrar por tags`}>
+    <main>
+        <h1>Find posts by tags</h1>
+
+        <div class="more-tags-container">
+            <div class="content"> 
+                {existingTags.map(tag => {
+                    return <a href={`/tags/${tag}`}>{tag}</a>
+                })}
+            </div>
+        </div>
+    </main>
+</BaseLayout>

@@ -1,0 +1,130 @@
+---
+import BlogPost from "../../components/BlogPost.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+export async function getStaticPaths() {
+    const allPosts = await Astro.glob("../posts/*.md")
+    const everyTag = allPosts.map((post) => post.frontmatter.tags).flat()
+    const singleTags = [...new Set(everyTag)] //set gens an object with no repeated value, then we use spread operator to drop these "atoms" values as values in a string
+
+    return singleTags.map(tag => {
+        const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag))
+
+        return {
+            params: { tag },
+            props: {
+                posts: filteredPosts,
+                existingTags: singleTags,
+            }
+        }
+    })
+
+}
+
+const { tag } = Astro.params
+const { posts, existingTags } = Astro.props // this props comes from get static paths
+---
+<style>
+    .tag {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 2px;
+        background: #9700ff;
+        color: rgb(255, 157, 165);
+        font-weight: 900;
+        text-transform: lowercase;
+        transform: rotate(-4deg);
+    }
+
+    main {
+        width: calc(100% - 24px);
+        max-width: 720px;
+        margin: 48px auto;
+    }
+
+    .posts-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 36px;
+    }
+
+    .more-tags-container {
+        background: black;
+        border-radius: 4px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        
+        padding: 24px;
+        margin-top: 36px;
+    }
+
+    .more-tags-container p {
+        color: #555;
+        font-weight: 900;
+    }
+
+    .more-tags-container .content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .more-tags-container .content a {
+        color: white;
+        font-weight: 700;
+        font-size: 1.25rem;
+        text-decoration: none;
+        position: relative;
+        z-index: 99;
+    }
+
+    .more-tags-container .content a::before {
+        content: "";
+        height: 2px;
+        position: absolute;
+        bottom: 1px;
+        left: 0px;
+        width: 100%;
+        background: rgba(255, 176, 250, 0.342);
+        transition: all 75ms ease;
+    }
+    
+    .more-tags-container .content a:hover::before {
+        height: 2.25ch;
+        z-index: 0;
+    }
+</style>
+
+<BaseLayout title={`Busca por #${tag}`}>
+    <main>
+        <h1>Posts tagged with <span class="tag">#{tag}</span></h1>
+
+        <div class="more-tags-container">
+            <p>Other tags</p>
+
+            <div class="content"> 
+                {existingTags.map(tag => {
+                    return <a href={`/tags/${tag}`}>{tag}</a>
+                })}
+            </div>
+        </div>
+
+        <div class="posts-container">
+            {posts.map(post => {
+                return (
+                    <BlogPost
+                        title={post.frontmatter.title}
+                        pubDate={post.frontmatter.pubDate}
+                        description={post.frontmatter.description}
+                        author={post.frontmatter.author}
+                        url={post.url}
+                    >
+                    </BlogPost>
+                )
+            })}
+        </div>
+    </main>
+</BaseLayout>
