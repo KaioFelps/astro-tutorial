@@ -3,15 +3,13 @@ import "../styles/global.css"
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import MetaHead from "../components/MetaHead.astro";
+import BaseLayout from "./BaseLayout.astro";
 
 const { frontmatter } = Astro.props
 const pageTitle = frontmatter.title
 ---
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<MetaHead title={pageTitle} />
-<body>
+<BaseLayout title={pageTitle}>
     <style>
         main {
             width: calc(100% - 24px);
@@ -84,7 +82,6 @@ const pageTitle = frontmatter.title
         }
     </style>
     
-    <Header />
     <main>
         <button class="go-back-btn">Go back</button>
         <article>
@@ -106,9 +103,7 @@ const pageTitle = frontmatter.title
             </div>
         </article>
     </main>
-    <Footer />
     <script>
         document.querySelector(".go-back-btn").addEventListener("click", () => history.back())
     </script>
-</body>
-</html>
+</BaseLayout>
