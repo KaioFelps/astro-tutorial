@@ -3,32 +3,35 @@ import Hamburguer from "./Hamburguer.astro"
 ---
 <style>
     header {
-        padding: 24px;
-        background: #fafafa;
+        padding: 0 24px;
+        background: #ffb986;
+        border-bottom: 2px solid black;
     }
 
     nav {
         display: flex;
         align-items: center;
-        gap: 4px;
     }
 
     .link {
         display: block;
-        padding: 16px 24px;
-        border-radius: 8px;
+        padding: 32px;
         background: transparent;
-        color: #00b7ff;
+        color: #000000;
         text-decoration: none;
         font-weight: bold;
 
-        transition: all 150ms ease-in;
+        border-right: 2px solid black;
+    }
+    .link:first-child {
+        border-left: 2px solid black;
     }
     .link:hover {
-        background: #00000010;
+        background: #7700ff;
+        color: white;
     }
     .link:active {
-        transform: scale(0.9);
+        background: #b87bff;
     }
 
     .nav-links {
@@ -41,9 +44,8 @@ import Hamburguer from "./Hamburguer.astro"
         display: flex;
     }
 
-    @media screen and (min-width: 636px) {
+    @media (min-width: 636px) {
         .nav-links {
-            margin-left: 5em;
             display: flex;
             position: static;
             width: auto;

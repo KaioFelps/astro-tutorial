@@ -1,9 +1,37 @@
 ---
 import Layout from "../layouts/BaseLayout.astro"
+
 ---
+<style>
+	main {
+		width: calc(100%-48px);
+		max-width: 1128px;
+		margin-inline: auto;
+		margin-block: 64px;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.tulla {
+		width: 100%;
+		max-width: 560px;
+		object-fit: cover;
+	}
+</style>
 
 <Layout>
 	<main>
-		<h1>Meu site em astro porre</h1>
+		<h1>Meu site em astro</h1>
+		<p style={{marginBottom: "36px"}}>gifs não funcionam 😡</p>
+
+		<img
+			class="tulla"
+			src="https://tenor.com/pt-BR/view/tulla-luana-dancing-gif-10444428"
+			alt=""
+			width={560}
+			height={560}
+		/>
 	</main>
 </Layout>

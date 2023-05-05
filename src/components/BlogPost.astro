@@ -1,0 +1,70 @@
+---
+const { title, pubDate, description, author, url } = Astro.props
+---
+<style>
+    .container {
+        background: white;
+        border-radius: 8px;
+        border: 2px solid black;
+        padding: 24px;
+        
+        display: flex;
+        flex-direction: column;
+        transition: all 75ms ease-in-out;
+    }
+    
+    .container:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 6px 6px 0px -2px black;
+    }
+
+    .container p {
+        margin: 0;
+    }
+
+    .light-infos {
+        font-size: 1rem;
+        color: #aaa;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-bottom: 8px;
+    }
+
+    .desc {
+        font-size: 1.5rem;
+    }
+
+    .go-to-btn {
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: black;
+
+        padding: 8px 24px;
+        border-radius: 7px;
+        border: 2px solid black;
+        box-shadow: 0 2px 0 0 black;
+        background-color: rgb(255, 170, 200);
+        width: fit-content;
+
+        margin-top: 1rem;
+        transition: all 75ms ease-in-out;
+    }
+
+    .go-to-btn:active {
+        box-shadow: 0 0 0 0 black;
+        transform: translateY(2px);
+    }
+</style>
+
+<div class="container">
+    <p class="light-infos">Por {author} • {new Date(pubDate).toDateString()}</p>
+    <p class="title"><strong>{title}</strong></p>
+    <p>{description}</p>
+    
+    <a href={url} class="go-to-btn">Ler mais</a>
+</div>

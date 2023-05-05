@@ -19,7 +19,8 @@ const pageTitle = frontmatter.title
     
         article {
             background: white;
-            border-radius: 12px;
+            border-radius: 4px;
+            border: 2px solid black;
         }
         
         header {
@@ -37,6 +38,8 @@ const pageTitle = frontmatter.title
     
         header p {
             margin: 0;
+            color: black;
+            font-weight: 700;
         }
     
         .content {
@@ -45,38 +48,43 @@ const pageTitle = frontmatter.title
         }
         
         .go-back-btn {
-            border: none;
-            box-shadow: inset 0px 0px 0px 1px #00000020;
-            background-color: white;
-            padding: 12px 32px;
-            border-radius: 999px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: black;
             font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 12px;
+
+            background-color: rgb(60, 138, 233);
+            margin-bottom: 32px;
+            
+            border: 2px solid black;
+            border-radius: 999px;
+            box-shadow: 4px 4px 0 0 #0b1476;
+            padding: 12px 32px;
             transition: all 75ms ease-in;
         }
         .go-back-btn:hover {
             filter: brightness(0.98);
         }
         .go-back-btn:active {
+            box-shadow: 0 0 0 0 #0b1476;
             filter: brightness(0.9);
             transform: scale(0.95);
         }
 
         .tag {
             font-size: .875rem;
-            font-weight: 500;
+            font-weight: 700;
             padding: 4px 12px;
             line-height: 1.25;
             border-radius: 999px;
-            background: #eee;
+            background: #ff9e7450;
         }
 
         .tag-container {
-            border-bottom: 1px solid #eeeeee;
-            border-top: 1px solid #eeeeee;
+            border-bottom: 2px solid black;
+            border-top: 2px solid black;
             margin: 0px 0 32px 0;
-            padding: 8px 24px;
+            padding: 16px 24px;
             display: flex;
             gap: 4px;
         }
